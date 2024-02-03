@@ -1,0 +1,1 @@
+import { prductList } from "./productList.mjs";
