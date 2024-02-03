@@ -23,3 +23,5 @@ function productCardTemplate(product) {
     // render out the product list to the element
     renderListWithTemplate(productCardTemplate, el, products);
   }
+
+  function limitToFour()
