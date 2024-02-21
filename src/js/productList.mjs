@@ -21,6 +21,7 @@ export default async function productList(selector, category) {
   const products = await getData(category);
   console.log(products);
   // render out the product list to the element
-  renderListWithTemplate(productCardTemplate, el, products);
+  let newArray = products.slice(0,4)
+  renderListWithTemplate(productCardTemplate, el, newArray);
   document.querySelector(".title").innerHTML = category;
 }
