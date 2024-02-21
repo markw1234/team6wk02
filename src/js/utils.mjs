@@ -41,6 +41,7 @@ export function renderListWithTemplate(
   const htmlString = list.map(templateFn);
   parentElement.insertAdjacentHTML(position, htmlString.join(""));
 }
+
 export async function renderWithTemplate(
   templateFn,
   parentElement,
