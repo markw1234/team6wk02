@@ -35,11 +35,18 @@ export function renderListWithTemplate(
   position = "afterbegin",
   clear = true
 ) {
-  if (clear) {
-    parentElement.innerHTML = "";
+  if (templateFn != null){
+    if (clear) {
+        parentElement.innerHTML = "";
+      }
+      const htmlString = list.map(templateFn);
+      parentElement.insertAdjacentHTML(position, htmlString.join("")); 
   }
-  const htmlString = list.map(templateFn);
-  parentElement.insertAdjacentHTML(position, htmlString.join(""));
+  // if (clear) {
+  //   parentElement.innerHTML = "";
+  // }
+  // const htmlString = list.map(templateFn);
+  // parentElement.insertAdjacentHTML(position, htmlString.join(""));
 }
 
 export async function renderWithTemplate(
