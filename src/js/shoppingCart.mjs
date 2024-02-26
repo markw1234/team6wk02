@@ -5,6 +5,19 @@ export default function ShoppingCart() {
   const outputEl = document.querySelector(".product-list");
   //console.log(cartItems);
   renderListWithTemplate(cartItemTemplate, outputEl, cartItems);
+  const total = calculateListTotal(cartItems);
+  displayCartTotal(total);
+}
+
+function displayCartTotal(total) {
+  if (total > 0) {
+    // show our checkout button and total if there are items in the cart.
+    document.querySelector(".list-footer").classList.remove("hide");
+    //document.querySelector(".list-total").innerText += ` ${Intl.NumberFormat('en-US', {style: 'currency', currency: 'USD'}).format(total)}`;
+    document.querySelector(".list-total").innerText += ` $${Math.round(total*100)/100}`;
+  } else {
+    document.querySelector(".list-footer").classList.add("hide");
+  }
 }
 
 function cartItemTemplate(item) {
@@ -24,4 +37,10 @@ function cartItemTemplate(item) {
 </li>`;
 
   return newItem;
+}
+
+function calculateListTotal(list) {
+  const amounts = list.map((item) => item.FinalPrice);
+  const total = amounts.reduce((sum, item) => sum + item, 0);
+  return total;
 }
