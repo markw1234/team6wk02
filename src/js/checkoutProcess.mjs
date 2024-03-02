@@ -81,10 +81,18 @@ const checkoutProcess = {
     json.shipping = this.shipping;
     json.items = packageItems(this.list);
     console.log(json);
+    setLocalStorage("so-cart", []); // instr sltn w08
+    location.assign("/checkout/success.html");
     try {
       const res = await checkout(json);
       console.log(res);
     } catch (err) {
+      //console.log(err); // old code out wk08
+      // get rid of any preexisting alerts. // new w08
+      removeAllAlerts();
+      for (let message in err.message) {
+        alertMessage(err.message[message]);
+      }
       console.log(err);
     }
   },

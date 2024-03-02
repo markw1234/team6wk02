@@ -3,7 +3,9 @@ function convertToJson(res) {
   if (res.ok) {
     return res.json();
   } else {
-    throw new Error("Bad Response");
+    //throw new Error("Bad Response");
+    throw { name: 'servicesError', message: jsonResponse }; // suggested in 02 wk08
+    //throw { name: "servicesError", message: data }; // Instructor final code
   }
 }
 
