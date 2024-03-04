@@ -2,7 +2,7 @@
 
 //loadHeaderFooter();
 
-//instructor code wk07
+// code wk07
 import { loadHeaderFooter } from "./utils.mjs";
 import checkoutProcess from "./checkoutProcess.mjs";
 

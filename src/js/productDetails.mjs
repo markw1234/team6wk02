@@ -1,5 +1,8 @@
 import { findProductById } from "./productData.mjs";
-import { setLocalStorage, getLocalStorage } from "./utils.mjs";
+import { setLocalStorage,
+         getLocalStorage,
+         alertMessage,
+} from "./utils.mjs";
 
 let product = {};
 
@@ -20,6 +23,7 @@ function addToCart() {
   // then add the current product to the list
   cartContents.push(product);
   setLocalStorage("so-cart", cartContents);
+  alertMessage(`${product.NameWithoutBrand} added to cart!`); //wk08 stretch 02
 }
 function renderProductDetails() {
   document.querySelector("#productName").innerText = product.Brand.Name;
