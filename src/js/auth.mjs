@@ -1,19 +1,10 @@
 import { loginRequest } from "./externalServices.mjs";
 import { alertMessage, getLocalStorage, setLocalStorage } from "./utils.mjs";
+import jwt_decode from "jwt-decode"; //wk9
 
 const tokenKey = "so-token";
 
-export async function login(creds, redirect = "/") {
-    try {
-      const token = await loginRequest(creds);
-      setLocalStorage(tokenKey, token);
-      window.location = redirect;
-    } catch (err) {
-      alertMessage(err.message.message);
-    }
-  }
-
-function isTokenValid(token) {
+function isTokenValid(token) { //wk9
     // check to make sure a token was actually passed in.
     if (token) {
       // decode the token
@@ -36,7 +27,7 @@ function isTokenValid(token) {
   
   //import and call this function on any page we want protected.
   // if there is a valid token it will be returned, otherwise we will redirect to the login page.
-  export function checkLogin() {
+  export function checkLogin() { //wk9
     // get the token from localStorage
     const token = getLocalStorage(tokenKey);
     // use the isTokenValid function to check the validity of our token
@@ -53,4 +44,14 @@ function isTokenValid(token) {
       // redirect by updating window.location =
       window.location = `/login/index.html?redirect=${location.pathname}`;
     } else return token; //if they are logged in then just return the token.
+  }
+
+  export async function login(creds, redirect = "/") { //wk9
+    try {
+      const token = await loginRequest(creds);
+      setLocalStorage(tokenKey, token);
+      window.location = redirect;
+    } catch (err) {
+      alertMessage(err.message.message);
+    }
   }
